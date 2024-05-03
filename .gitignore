@@ -1,0 +1,15 @@
+# Node.js Dependencies
+node_modules/
+
+# npm package-lock.json
+package-lock.json
+
+# yarn lock file
+yarn.lock
+
+# dotenv environment variables file
+.env
+
+#Mac metadata
+.DS_Store
+

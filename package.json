@@ -1,0 +1,15 @@
+{
+  "name": "is215_final_project_aws_lambda_trigger_code",
+  "version": "1.0.0",
+  "description": "This is the code that will be build and uploaded to the AWS Lambda trigger.",
+  "main": "index.js",
+  "author": "Group 1",
+  "dependencies": {
+    "aws-sdk": "^2.1337.0",
+    "axios": "^1.6.8",
+    "sharp": "^0.31.3"
+  },
+  "scripts":{
+      "build": "zip -r is215_final_project_aws_lambda_trigger_code.zip index.js node_modules"
+  }
+}
