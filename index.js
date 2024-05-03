@@ -42,7 +42,7 @@ exports.handler = async(event) => {
 
         // Call the OpenAI API to generate articles based on the selected node
         const openaiEndpoint = 'https://api.openai.com/v1/engines/gpt-3.5-turbo-instruct/completions';
-        const openaiApiKey = process.env.OPEN_API_KEY; // Replace with your OpenAI API key
+        const openaiApiKey = process.env.OPEN_API_KEY; // Replace with your OpenAI API key, or add it as an Environment Variable in your Lambda instance
 
 
         console.log("const headers");
@@ -76,10 +76,10 @@ exports.handler = async(event) => {
 
         // Store the generated article in a new S3 bucket
         const resultBucket = bucket;
-        //const resultKey = `${selectedNode}-article.txt`; 
+        
 
         console.log("resultKey");
-        const resultKey = `articles/${filename}-article.txt`; //sa folder na article, yung filename ay yung naupload na filename din
+        const resultKey = `articles/${filename}-article.txt`;
         console.log("resultKey", resultKey);
 
         console.log("await s3.putObject");
@@ -89,16 +89,6 @@ exports.handler = async(event) => {
             Body: articles
         }).promise();
         console.log("await s3.putObject end");
-
-        //save din natin ung response ni Rekognition
-        // await s3.putObject({
-        //     Bucket: resultBucket,
-        //     Key: `rekognition-response/${filename}.json`,
-        //     Body: rekognitionResponse
-        // }).promise();
-
-        // Return the URL of the generated article stored in S3
-        //after magresponse ng fileupload, kailngan ulit ng http request para kunin ung laman ng url na ito
 
         console.log("articleUrl");
         const articleUrl = `https://s3.amazonaws.com/${resultBucket}/${filename}`; 
